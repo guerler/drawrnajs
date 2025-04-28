@@ -4,7 +4,7 @@ var Region = require("./region");
 var Connection = require("./connection");
 var Radloop = require("./radloop");
 
-var NAView = module.exports = function(){
+function NAView (){
     this.ANUM = 9999.0;
 	this.MAXITER = 500;
 
@@ -223,7 +223,7 @@ NAView.prototype.find_central_loop = function find_central_loop(){
     var maxdepth = null;
     var i = null;
 
-    determine_depths();
+    this.determine_depths();
     maxconn = 0;
     maxdepth = -1;
     for (i = 0; i < this.loop_count; i++) {
@@ -240,7 +240,7 @@ NAView.prototype.find_central_loop = function find_central_loop(){
     }
 }
 
-function determine_depths() {
+NAView.prototype.determine_depths = function determine_depths() {
     var lp = new Loop();
     var i = null;
     var j = null;
@@ -1096,3 +1096,5 @@ NAView.prototype.connected_connection = function connected_connection(cp, cpnext
         return false;
     }
 }
+
+module.exports = NAView;
